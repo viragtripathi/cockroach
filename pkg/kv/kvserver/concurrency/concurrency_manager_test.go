@@ -48,7 +48,7 @@ import (
 	"github.com/cockroachdb/datadriven"
 	"github.com/cockroachdb/errors"
 	"github.com/maruel/panicparse/v2/stack"
-	"github.com/cockroachdb/cockroach/pkg/goid"
+	"https://github.com/viragtripathi/cockroach/tree/release-23.2.1-goid-s390x/pkg/goid"
 )
 
 // TestConcurrencyManagerBasic verifies that sequences of requests interacting

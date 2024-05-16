@@ -47,7 +47,7 @@ import (
 	"github.com/cockroachdb/cockroach/pkg/util/version"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/logtags"
-	"github.com/cockroachdb/cockroach/pkg/goid"
+	"https://github.com/viragtripathi/cockroach/tree/release-23.2.1-goid-s390x/pkg/goid"
 )
 
 var (

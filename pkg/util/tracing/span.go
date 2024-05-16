@@ -20,7 +20,7 @@ import (
 	"github.com/cockroachdb/cockroach/pkg/util/protoutil"
 	"github.com/cockroachdb/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/cockroachdb/logtags"
-	"github.com/cockroachdb/cockroach/pkg/goid"
+	"https://github.com/viragtripathi/cockroach/tree/release-23.2.1-goid-s390x/pkg/goid"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
 	oteltrace "go.opentelemetry.io/otel/trace"

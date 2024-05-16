@@ -65,7 +65,7 @@ import (
 	"github.com/cockroachdb/cockroach/pkg/util/retry"
 	"github.com/cockroachdb/cockroach/pkg/util/syncutil"
 	"github.com/cockroachdb/errors"
-	"github.com/cockroachdb/cockroach/pkg/goid"
+	"https://github.com/viragtripathi/cockroach/tree/release-23.2.1-goid-s390x/pkg/goid"
 )
 
 // startupRetryKey context key used by assertions to track that code is running
