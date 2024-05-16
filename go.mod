@@ -188,7 +188,6 @@ require (
 	github.com/olekukonko/tablewriter v0.0.5-0.20200416053754-163badb3bac6
 	github.com/opencontainers/image-spec v1.0.2
 	github.com/otan/gopgkrb5 v1.0.3
-	github.com/petermattis/goid v0.0.0-20211229010228-4d14c490ee36
 	github.com/pierrec/lz4/v4 v4.1.17
 	github.com/pierrre/geohash v1.0.0
 	github.com/pires/go-proxyproto v0.7.0

@@ -28,7 +28,7 @@ import (
 	"github.com/cockroachdb/logtags"
 	"github.com/cockroachdb/redact"
 	"github.com/cockroachdb/redact/interfaces"
-	"github.com/petermattis/goid"
+	"github.com/cockroachdb/cockroach/pkg/goid"
 )
 
 // logEntry represents a logging event flowing through this package.

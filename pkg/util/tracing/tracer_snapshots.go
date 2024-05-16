@@ -22,7 +22,7 @@ import (
 	"github.com/cockroachdb/cockroach/pkg/util/timeutil"
 	"github.com/cockroachdb/cockroach/pkg/util/tracing/tracingpb"
 	"github.com/cockroachdb/errors"
-	"github.com/petermattis/goid"
+	"github.com/cockroachdb/cockroach/pkg/goid"
 )
 
 // SpansSnapshot represents a snapshot of all the open spans at a certain point

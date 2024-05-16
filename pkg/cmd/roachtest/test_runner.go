@@ -47,7 +47,7 @@ import (
 	"github.com/cockroachdb/cockroach/pkg/util/version"
 	"github.com/cockroachdb/errors"
 	"github.com/cockroachdb/logtags"
-	"github.com/petermattis/goid"
+	"github.com/cockroachdb/cockroach/pkg/goid"
 )
 
 var (
