@@ -1,0 +1,1 @@
+/private/var/tmp/_bazel_viragtripathi/5648f841273feb65ca36b89ebe3ab8f7/execroot/com_github_cockroachdb_cockroach/bazel-out/darwin_arm64-fastbuild/bin/pkg/sql/lexbase/reserved_keywords.go
