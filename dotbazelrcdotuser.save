@@ -1,0 +1,6 @@
+build --config=dev
+build --config nolintonbuild
+
+test --test_tmpdir=/Users/viragtripathi/go/src/github.com/cockroachdb/cockroach/tmp
+build --override_repository=com_github_petermattis_goid=/Users/viragtripathi/go/src/github.com/viragtripathi/goid
+build --remote_cache=http://127.0.0.1:9867
