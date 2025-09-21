@@ -9,7 +9,6 @@ import (
 	"strings"
 
 	sqllexbase "github.com/cockroachdb/cockroach/pkg/sql/lexbase"
-	"github.com/cockroachdb/cockroach/pkg/util/jsonpath/parser/lexbase"
 )
 
 // JSONPathScanner is a scanner with a jsonpath-specific scan function.
@@ -30,7 +29,7 @@ func (s *JSONPathScanner) Scan(lval ScanSymType) {
 	case '$':
 		// Root path ($)
 		if s.peek() == '.' || s.peek() == eof || s.peek() == ' ' || s.peek() == '[' || s.peek() == ')' || s.peek() == '?' {
-			lval.SetID(lexbase.ROOT)
+			lval.SetID(sqllexbase.ROOT)
 			return
 		}
 
@@ -38,13 +37,13 @@ func (s *JSONPathScanner) Scan(lval ScanSymType) {
 		if s.peek() == identQuote {
 			s.pos++
 			if s.scanString(lval, identQuote, false /* allowEscapes */, true /* requireUTF8 */) {
-				lval.SetID(lexbase.VARIABLE)
+				lval.SetID(sqllexbase.VARIABLE)
 			}
 			return
 		}
 		s.pos++
 		s.scanIdent(lval)
-		lval.SetID(lexbase.VARIABLE)
+		lval.SetID(sqllexbase.VARIABLE)
 		return
 	case identQuote:
 		// "[^"]"
@@ -59,61 +58,61 @@ func (s *JSONPathScanner) Scan(lval ScanSymType) {
 		// With allowEscapes == false,
 		//  - String literal input "^\\$" is scanned as "^\\\\$" (two escaped backslashes)
 		if s.scanString(lval, identQuote, true /* allowEscapes */, true /* requireUTF8 */) {
-			lval.SetID(lexbase.STR)
+			lval.SetID(sqllexbase.STR)
 		}
 		return
 	case '=':
 		if s.peek() == '=' { // ==
 			s.pos++
-			lval.SetID(lexbase.EQUAL)
+			lval.SetID(sqllexbase.EQUAL)
 			return
 		}
 		return
 	case '!':
 		if s.peek() == '=' { // !=
 			s.pos++
-			lval.SetID(lexbase.NOT_EQUAL)
+			lval.SetID(sqllexbase.NOT_EQUAL)
 			return
 		}
-		lval.SetID(lexbase.NOT)
+		lval.SetID(sqllexbase.NOT)
 		return
 	case '>':
 		if s.peek() == '=' { // >=
 			s.pos++
-			lval.SetID(lexbase.GREATER_EQUAL)
+			lval.SetID(sqllexbase.GREATER_EQUAL)
 			return
 		}
-		lval.SetID(lexbase.GREATER)
+		lval.SetID(sqllexbase.GREATER)
 		return
 	case '<':
 		if s.peek() == '=' { // <=
 			s.pos++
-			lval.SetID(lexbase.LESS_EQUAL)
+			lval.SetID(sqllexbase.LESS_EQUAL)
 			return
 		}
-		lval.SetID(lexbase.LESS)
+		lval.SetID(sqllexbase.LESS)
 		return
 	case '&':
 		if s.peek() == '&' { // &&
 			s.pos++
-			lval.SetID(lexbase.AND)
+			lval.SetID(sqllexbase.AND)
 			return
 		}
 		return
 	case '|':
 		if s.peek() == '|' { // ||
 			s.pos++
-			lval.SetID(lexbase.OR)
+			lval.SetID(sqllexbase.OR)
 			return
 		}
 		return
 	case '@':
-		lval.SetID(lexbase.CURRENT)
+		lval.SetID(sqllexbase.CURRENT)
 		return
 	case '*':
 		if s.peek() == '*' { // **
 			s.pos++
-			lval.SetID(lexbase.ANY)
+			lval.SetID(sqllexbase.ANY)
 			return
 		}
 		return
@@ -141,10 +140,10 @@ func (s *JSONPathScanner) scanIdent(lval ScanSymType) {
 	s.normalizeIdent(lval, isIdentMiddle, false /* toLower */)
 	// Postgres is case-insensitive for keywords, see
 	// https://github.com/cockroachdb/cockroach/issues/144255.
-	lval.SetID(lexbase.GetKeywordID(strings.ToLower(lval.Str())))
+	lval.SetID(sqllexbase.GetKeywordID(strings.ToLower(lval.Str())))
 }
 
 // scanNumber is similar to Scanner.scanNumber, but uses Jsonpath tokens.
 func (s *JSONPathScanner) scanNumber(lval ScanSymType, ch int) {
-	s.scanNumberImpl(lval, ch, lexbase.ERROR, lexbase.FCONST, lexbase.ICONST)
+	s.scanNumberImpl(lval, ch, sqllexbase.ERROR, sqllexbase.FCONST, sqllexbase.ICONST)
 }
