@@ -1,14 +1,3 @@
-diff -urN a/internal/utils/BUILD.bazel b/internal/utils/BUILD.bazel
---- a/internal/utils/BUILD.bazel	2025-01-01 00:00:00.000000000 +0000
-+++ b/internal/utils/BUILD.bazel	2025-10-01 00:00:00.000000000 +0000
-@@ -20,6 +20,7 @@
-         "transpose_ints_arm64.go",
-         "transpose_ints_def.go",
-         "transpose_ints_noasm.go",
-+        "transpose_ints_ppc64le.go",
-         "utils.go",
-     ],
-     importpath = "github.com/apache/arrow/go/v11/internal/utils",
 diff -urN a/internal/utils/transpose_ints_ppc64le.go b/internal/utils/transpose_ints_ppc64le.go
 --- a/internal/utils/transpose_ints_ppc64le.go	1970-01-01 00:00:00.000000000 +0000
 +++ b/internal/utils/transpose_ints_ppc64le.go	2025-10-01 00:00:00.000000000 +0000
