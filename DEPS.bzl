@@ -313,6 +313,10 @@ def go_deps():
         name = "com_github_apache_arrow_go_v11",
         build_file_proto_mode = "disable_global",
         importpath = "github.com/apache/arrow/go/v11",
+        patch_args = ["-p1"],
+        patches = [
+            "@com_github_cockroachdb_cockroach//build/patches:com_github_apache_arrow_go_v11.patch",
+        ],
         sha256 = "d5275ec213d31234d54ca13fff78d07ba1837d78664c13b76363d2f75718ae4f",
         strip_prefix = "github.com/apache/arrow/go/v11@v11.0.0",
         urls = [

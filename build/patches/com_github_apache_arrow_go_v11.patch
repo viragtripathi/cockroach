@@ -1,0 +1,216 @@
+diff --git a/internal/utils/transpose_ints_ppc64le.go b/internal/utils/transpose_ints_ppc64le.go
+new file mode 100644
+index 0000000..0123456
+--- /dev/null
++++ b/internal/utils/transpose_ints_ppc64le.go
+@@ -0,0 +1,200 @@
++//go:build ppc64le
++// +build ppc64le
++
++// Licensed to the Apache Software Foundation (ASF) under one
++// or more contributor license agreements.  See the NOTICE file
++// distributed with this work for additional information
++// regarding copyright ownership.  The ASF licenses this file
++// to you under the Apache License, Version 2.0 (the
++// "License"); you may not use this file except in compliance
++// with the License.  You may obtain a copy of the License at
++//
++// http://www.apache.org/licenses/LICENSE-2.0
++//
++// Unless required by applicable law or agreed to in writing, software
++// distributed under the License is distributed on an "AS IS" BASIS,
++// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++// See the License for the specific language governing permissions and
++// limitations under the License.
++
++package utils
++
++// Generic implementations for ppc64le architecture
++// These are fallback implementations without SIMD optimizations
++
++func TransposeInt8Int8(src, dest []int8) {
++	for i := range src {
++		dest[i] = src[i]
++	}
++}
++
++func TransposeInt8Int16(src []int8, dest []int16) {
++	for i, v := range src {
++		dest[i] = int16(v)
++	}
++}
++
++func TransposeInt8Int32(src []int8, dest []int32) {
++	for i, v := range src {
++		dest[i] = int32(v)
++	}
++}
++
++func TransposeInt8Int64(src []int8, dest []int64) {
++	for i, v := range src {
++		dest[i] = int64(v)
++	}
++}
++
++func TransposeInt8Uint8(src []int8, dest []uint8) {
++	for i, v := range src {
++		dest[i] = uint8(v)
++	}
++}
++
++func TransposeInt8Uint16(src []int8, dest []uint16) {
++	for i, v := range src {
++		dest[i] = uint16(v)
++	}
++}
++
++func TransposeInt8Uint32(src []int8, dest []uint32) {
++	for i, v := range src {
++		dest[i] = uint32(v)
++	}
++}
++
++func TransposeInt8Uint64(src []int8, dest []uint64) {
++	for i, v := range src {
++		dest[i] = uint64(v)
++	}
++}
++
++func TransposeInt16Int8(src []int16, dest []int8) {
++	for i, v := range src {
++		dest[i] = int8(v)
++	}
++}
++
++func TransposeInt16Int16(src, dest []int16) {
++	copy(dest, src)
++}
++
++func TransposeInt16Int32(src []int16, dest []int32) {
++	for i, v := range src {
++		dest[i] = int32(v)
++	}
++}
++
++func TransposeInt16Int64(src []int16, dest []int64) {
++	for i, v := range src {
++		dest[i] = int64(v)
++	}
++}
++
++func TransposeInt16Uint8(src []int16, dest []uint8) {
++	for i, v := range src {
++		dest[i] = uint8(v)
++	}
++}
++
++func TransposeInt16Uint16(src []int16, dest []uint16) {
++	for i, v := range src {
++		dest[i] = uint16(v)
++	}
++}
++
++func TransposeInt16Uint32(src []int16, dest []uint32) {
++	for i, v := range src {
++		dest[i] = uint32(v)
++	}
++}
++
++func TransposeInt16Uint64(src []int16, dest []uint64) {
++	for i, v := range src {
++		dest[i] = uint64(v)
++	}
++}
++
++func TransposeInt32Int8(src []int32, dest []int8) {
++	for i, v := range src {
++		dest[i] = int8(v)
++	}
++}
++
++func TransposeInt32Int16(src []int32, dest []int16) {
++	for i, v := range src {
++		dest[i] = int16(v)
++	}
++}
++
++func TransposeInt32Int32(src, dest []int32) {
++	copy(dest, src)
++}
++
++func TransposeInt32Int64(src []int32, dest []int64) {
++	for i, v := range src {
++		dest[i] = int64(v)
++	}
++}
++
++func TransposeInt32Uint8(src []int32, dest []uint8) {
++	for i, v := range src {
++		dest[i] = uint8(v)
++	}
++}
++
++func TransposeInt32Uint16(src []int32, dest []uint16) {
++	for i, v := range src {
++		dest[i] = uint16(v)
++	}
++}
++
++func TransposeInt32Uint32(src []int32, dest []uint32) {
++	for i, v := range src {
++		dest[i] = uint32(v)
++	}
++}
++
++func TransposeInt32Uint64(src []int32, dest []uint64) {
++	for i, v := range src {
++		dest[i] = uint64(v)
++	}
++}
++
++func TransposeInt64Int8(src []int64, dest []int8) {
++	for i, v := range src {
++		dest[i] = int8(v)
++	}
++}
++
++func TransposeInt64Int16(src []int64, dest []int16) {
++	for i, v := range src {
++		dest[i] = int16(v)
++	}
++}
++
++func TransposeInt64Int32(src []int64, dest []int32) {
++	for i, v := range src {
++		dest[i] = int32(v)
++	}
++}
++
++func TransposeInt64Int64(src, dest []int64) {
++	copy(dest, src)
++}
++
++func TransposeInt64Uint8(src []int64, dest []uint8) {
++	for i, v := range src {
++		dest[i] = uint8(v)
++	}
++}
++
++func TransposeInt64Uint16(src []int64, dest []uint16) {
++	for i, v := range src {
++		dest[i] = uint16(v)
++	}
++}
++
++func TransposeInt64Uint32(src []int64, dest []uint32) {
++	for i, v := range src {
++		dest[i] = uint32(v)
++	}
++}
++
++func TransposeInt64Uint64(src []int64, dest []uint64) {
++	for i, v := range src {
++		dest[i] = uint64(v)
++	}
++}
+
