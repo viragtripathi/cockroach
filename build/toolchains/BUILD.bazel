@@ -172,12 +172,8 @@ platform(
     name = "cross_linux_ppc64le",
     constraint_values = [
         "@platforms//os:linux",
-        "@platforms//cpu:ppc",
+        "@platforms//cpu:ppc64le",
     ],
-    exec_properties = {
-        "GOARCH": "ppc64le",
-        "GOOS": "linux",
-    },
 )
 
 toolchain(
@@ -188,7 +184,7 @@ toolchain(
     ],
     target_compatible_with = [
         "@platforms//os:linux",
-        "@platforms//cpu:ppc",
+        "@platforms//cpu:ppc64le",
     ],
     target_settings = [
         ":cross",
@@ -273,7 +269,7 @@ toolchain(
     ],
     target_compatible_with = [
         "@platforms//os:linux",
-        "@platforms//cpu:ppc",
+        "@platforms//cpu:ppc64le",
     ],
     target_settings = [
         ":cross",
@@ -635,7 +631,7 @@ config_setting(
     name = "is_linux_ppc64le",
     constraint_values = [
         "@io_bazel_rules_go//go/toolchain:linux",
-        "@platforms//cpu:ppc",
+        "@platforms//cpu:ppc64le",
     ],
 )
 
