@@ -119,6 +119,7 @@ cmake(
             "CMAKE_CXX_FLAGS": "-fPIC",
             "BUILD_APPS": "OFF",
             "BUILD_TESTING": "OFF",
+            "CMAKE_INSTALL_BINDIR": "bin_skip",
         },
         "//conditions:default": {
             "BUILD_LIBPROJ_SHARED": "OFF",
