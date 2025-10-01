@@ -127,8 +127,21 @@ cmake(
         },
     }),
     generate_args = ["-GUnix Makefiles"],
+    install_prefix = select({
+        "//build/toolchains:is_linux_ppc64le": "",
+        "//conditions:default": "",
+    }),
     lib_source = "@proj//:all",
     out_static_libs = ["libproj.a"],
+    postfix_script = select({
+        "//build/toolchains:is_linux_ppc64le": """
+# Manual install for ppc64le - only install library and headers, skip executables
+mkdir -p $INSTALLDIR/lib $INSTALLDIR/include
+cp -f lib/libproj.a $INSTALLDIR/lib/
+cp -f src/projects.h src/proj_api.h src/geodesic.h $INSTALLDIR/include/
+""",
+        "//conditions:default": "",
+    }),
     targets = select({
         "//build/toolchains:is_linux_ppc64le": ["proj"],
         "//conditions:default": [],
