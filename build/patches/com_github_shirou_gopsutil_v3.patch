@@ -44,11 +44,16 @@ index 0000000..0123456
 +index 0000000..1111111 100644
 +--- a/host/BUILD.bazel
 ++++ b/host/BUILD.bazel
-+@@ -8,6 +8,7 @@ go_library(
-+         "host_darwin_amd64.go",
-+         "host_darwin_arm64.go",
-+         "host_linux.go",
-++        "host_linux_ppc64le.go",
-+         "host_linux_amd64.go",
-+         "host_linux_arm64.go",
-+         "host_openbsd.go",
++@@ -1,10 +1,11 @@
++ load("@io_bazel_rules_go//go:def.bzl", "go_library")
++ 
++ go_library(
++     name = "host",
++-    srcs = [
+++    srcs = select({
+++        "@io_bazel_rules_go//go/platform:linux_ppc64le": ["host_linux_ppc64le.go"],
+++        "//conditions:default": [],
+++    }) + [
++         "host.go",
++         "host_bsd.go",
++         "host_darwin.go",
