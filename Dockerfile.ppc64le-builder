@@ -1,0 +1,28 @@
+# Build on amd64 so Bazel's linux-x86_64 binary runs natively
+FROM --platform=linux/amd64 debian:12
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Base deps + PowerPC LE cross toolchain
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential git curl ca-certificates python3 pkg-config \
+    zip unzip rsync xz-utils gnupg wget \
+    gcc-powerpc64le-linux-gnu g++-powerpc64le-linux-gnu \
+    && rm -rf /var/lib/apt/lists/*
+
+# Bazelisk
+RUN curl -L https://github.com/bazelbuild/bazelisk/releases/download/v1.22.0/bazelisk-linux-amd64 -o /usr/local/bin/bazel \
+ && chmod +x /usr/local/bin/bazel
+
+# Node for UI steps (executes on x86_64 inside this container)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+ && apt-get update && apt-get install -y nodejs \
+ && rm -rf /var/lib/apt/lists/*
+
+# Optional: Go on host for misc tools (rules_go still downloads SDKs per WORKSPACE)
+RUN curl -L https://go.dev/dl/go1.23.12.linux-amd64.tar.gz -o /tmp/go.tgz \
+ && tar -C /usr/local -xzf /tmp/go.tgz && rm /tmp/go.tgz
+ENV PATH=/usr/local/go/bin:$PATH
+
+WORKDIR /work
+

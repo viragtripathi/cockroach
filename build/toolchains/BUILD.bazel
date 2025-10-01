@@ -168,6 +168,31 @@ toolchain(
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
 )
 
+platform(
+    name = "cross_linux_ppc64le",
+    constraint_values = [
+        "@platforms//os:linux",
+        "@platforms//cpu:ppc",
+    ],
+)
+
+toolchain(
+    name = "cross_x86_64_ppc64le_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:ppc",
+    ],
+    target_settings = [
+        ":cross",
+    ],
+    toolchain = "@toolchain_cross_powerpc64le-unknown-linux-gnu//:toolchain",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
 toolchain(
     name = "cross_arm64_linux_toolchain",
     exec_compatible_with = [
@@ -233,6 +258,23 @@ toolchain(
         ":cross",
     ],
     toolchain = "@armtoolchain_cross_s390x-ibm-linux-gnu//:toolchain",
+    toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
+)
+
+toolchain(
+    name = "cross_arm64_ppc64le_toolchain",
+    exec_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:arm64",
+    ],
+    target_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:ppc",
+    ],
+    target_settings = [
+        ":cross",
+    ],
+    toolchain = "@armtoolchain_cross_powerpc64le-unknown-linux-gnu//:toolchain",
     toolchain_type = "@bazel_tools//tools/cpp:toolchain_type",
 )
 

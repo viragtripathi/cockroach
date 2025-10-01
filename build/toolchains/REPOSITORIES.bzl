@@ -6,6 +6,10 @@ load(
     "//build/toolchains:darwin/toolchain.bzl",
     _macos_toolchain_repos = "macos_toolchain_repos",
 )
+load(
+    "//build/toolchains:local_ppc64le_toolchain.bzl",
+    _local_ppc64le_toolchain = "local_ppc64le_toolchain",
+)
 
 def toolchain_dependencies():
     _crosstool_toolchain_repo(
@@ -19,6 +23,10 @@ def toolchain_dependencies():
         host = "x86_64",
         target = "s390x-ibm-linux-gnu",
         tarball_sha256 = "027d7d3b89d0c9745243610b9c12aa26f5605884b058934645cb344927228dab",
+    )
+    # Use local system toolchain for ppc64le (not yet in GCS)
+    _local_ppc64le_toolchain(
+        name = "toolchain_cross_powerpc64le-unknown-linux-gnu",
     )
     _crosstool_toolchain_repo(
         name = "toolchain_cross_x86_64-unknown-linux-gnu",
@@ -43,6 +51,10 @@ def toolchain_dependencies():
         host = "aarch64",
         target = "s390x-ibm-linux-gnu",
         tarball_sha256 = "76ede410bba820ff9e5e10d68802abc8cf809720fc035a93b1e16f40e987bfd4",
+    )
+    # Use local system toolchain for ppc64le (not yet in GCS)
+    _local_ppc64le_toolchain(
+        name = "armtoolchain_cross_powerpc64le-unknown-linux-gnu",
     )
     _crosstool_toolchain_repo(
         name = "armtoolchain_cross_x86_64-unknown-linux-gnu",
