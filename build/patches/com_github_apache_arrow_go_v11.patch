@@ -2,19 +2,14 @@ diff --git a/internal/utils/BUILD.bazel b/internal/utils/BUILD.bazel
 index 0000000..1111111 100644
 --- a/internal/utils/BUILD.bazel
 +++ b/internal/utils/BUILD.bazel
-@@ -1,7 +1,10 @@
- load("@io_bazel_rules_go//go:def.bzl", "go_library")
- 
- go_library(
-     name = "utils",
--    srcs = [
-+    srcs = select({
-+        "@io_bazel_rules_go//go/platform:linux_ppc64le": ["transpose_ints_ppc64le.go"],
-+        "//conditions:default": [],
-+    }) + [
-         "bit_block_counter.go",
-         "bit_run_reader.go",
-         "bitmap_ops.go",
+@@ -20,6 +20,7 @@ go_library(
+         "transpose_ints_amd64.go",
+         "transpose_ints_amd64.s",
+         "transpose_ints_arm64.go",
++        "transpose_ints_ppc64le.go",
+         "transpose_ints_def.go",
+         "transpose_ints_noasm.go",
+         "utils.go",
 diff --git a/internal/utils/transpose_ints_ppc64le.go b/internal/utils/transpose_ints_ppc64le.go
 new file mode 100644
 index 0000000..0123456
