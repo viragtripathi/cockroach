@@ -7893,6 +7893,10 @@ def go_deps():
         name = "com_github_shirou_gopsutil_v3",
         build_file_proto_mode = "disable_global",
         importpath = "github.com/shirou/gopsutil/v3",
+        patch_args = ["-p1"],
+        patches = [
+            "@com_github_cockroachdb_cockroach//build/patches:com_github_shirou_gopsutil_v3.patch",
+        ],
         sha256 = "ea6f8b430cee40870d8d454aaa5d4c22e84d217a2548a3f755b91a96b1c67a88",
         strip_prefix = "github.com/shirou/gopsutil/v3@v3.21.12",
         urls = [
