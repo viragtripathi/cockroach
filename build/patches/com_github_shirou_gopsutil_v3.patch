@@ -1,8 +1,6 @@
-diff --git a/host/host_linux_ppc64le.go b/host/host_linux_ppc64le.go
-new file mode 100644
-index 0000000..0123456
---- /dev/null
-+++ b/host/host_linux_ppc64le.go
+diff -urN a/host/host_linux_ppc64le.go b/host/host_linux_ppc64le.go
+--- a/host/host_linux_ppc64le.go	1970-01-01 00:00:00.000000000 +0000
++++ b/host/host_linux_ppc64le.go	2025-10-01 00:00:00.000000000 +0000
 @@ -0,0 +1,36 @@
 +//go:build linux && ppc64le
 +// +build linux,ppc64le
@@ -40,20 +38,3 @@ index 0000000..0123456
 +	Sec  int64
 +	Nsec int64
 +}
-+diff --git a/host/BUILD.bazel b/host/BUILD.bazel
-+index 0000000..1111111 100644
-+--- a/host/BUILD.bazel
-++++ b/host/BUILD.bazel
-+@@ -1,10 +1,11 @@
-+ load("@io_bazel_rules_go//go:def.bzl", "go_library")
-+ 
-+ go_library(
-+     name = "host",
-+-    srcs = [
-++    srcs = select({
-++        "@io_bazel_rules_go//go/platform:linux_ppc64le": ["host_linux_ppc64le.go"],
-++        "//conditions:default": [],
-++    }) + [
-+         "host.go",
-+         "host_bsd.go",
-+         "host_darwin.go",
