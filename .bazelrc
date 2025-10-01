@@ -125,6 +125,8 @@ build:crosslinuxs390xbase --config=cross
 build:crosslinuxppc64le '--workspace_status_command=./build/bazelutil/stamp.sh -t powerpc64le-unknown-linux-gnu'
 build:crosslinuxppc64le --config=crosslinuxppc64lebase
 build:crosslinuxppc64lebase --platforms=//build/toolchains:cross_linux_ppc64le
+build:crosslinuxppc64lebase --action_env=GOARCH=ppc64le
+build:crosslinuxppc64lebase --action_env=GOOS=linux
 build:crosslinuxppc64lebase --config=cross
 
 # devdarwinx86_64 is a legacy setting that implies `--config=dev`.
