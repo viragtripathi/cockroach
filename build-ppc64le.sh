@@ -71,15 +71,18 @@ echo "Building target: $BUILD_TARGET"
 echo ""
 
 # Build using bazel directly with ppc64le cross-compilation config
+# Note: force_build_cdeps_flag is required since there are no pre-built c-deps for ppc64le
 echo "Starting build..."
+BAZEL_FLAGS="--config=crosslinuxppc64le --//build/toolchains:force_build_cdeps_flag"
+
 if [[ "$BUILD_TARGET" == "cockroach" ]]; then
-    bazel build //pkg/cmd/cockroach --config=crosslinuxppc64le
+    bazel build //pkg/cmd/cockroach $BAZEL_FLAGS
 elif [[ "$BUILD_TARGET" == "short" ]]; then
-    bazel build //pkg/cmd/cockroach-short --config=crosslinuxppc64le
+    bazel build //pkg/cmd/cockroach-short $BAZEL_FLAGS
 elif [[ "$BUILD_TARGET" == "workload" ]]; then
-    bazel build //pkg/cmd/workload --config=crosslinuxppc64le
+    bazel build //pkg/cmd/workload $BAZEL_FLAGS
 else
-    bazel build "//pkg/cmd/$BUILD_TARGET" --config=crosslinuxppc64le
+    bazel build "//pkg/cmd/$BUILD_TARGET" $BAZEL_FLAGS
 fi
 
 echo ""
