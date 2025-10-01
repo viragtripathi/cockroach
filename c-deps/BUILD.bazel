@@ -117,7 +117,8 @@ cmake(
             "CMAKE_BUILD_TYPE": "Release",
             "CMAKE_C_FLAGS": "-fPIC",
             "CMAKE_CXX_FLAGS": "-fPIC",
-            "CMAKE_EXE_LINKER_FLAGS": "-lm",
+            "BUILD_APPS": "OFF",
+            "BUILD_TESTING": "OFF",
         },
         "//conditions:default": {
             "BUILD_LIBPROJ_SHARED": "OFF",
