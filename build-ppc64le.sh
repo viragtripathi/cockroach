@@ -70,9 +70,17 @@ fi
 echo "Building target: $BUILD_TARGET"
 echo ""
 
-# Build using the dev tool with ppc64le cross-compilation config
+# Build using bazel directly with ppc64le cross-compilation config
 echo "Starting build..."
-./dev build "$BUILD_TARGET" --config=crosslinuxppc64le
+if [[ "$BUILD_TARGET" == "cockroach" ]]; then
+    bazel build //pkg/cmd/cockroach --config=crosslinuxppc64le
+elif [[ "$BUILD_TARGET" == "short" ]]; then
+    bazel build //pkg/cmd/cockroach-short --config=crosslinuxppc64le
+elif [[ "$BUILD_TARGET" == "workload" ]]; then
+    bazel build //pkg/cmd/workload --config=crosslinuxppc64le
+else
+    bazel build "//pkg/cmd/$BUILD_TARGET" --config=crosslinuxppc64le
+fi
 
 echo ""
 echo "=== Build Complete! ==="
