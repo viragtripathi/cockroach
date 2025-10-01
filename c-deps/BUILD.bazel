@@ -133,7 +133,7 @@ cmake(
     }),
     lib_source = "@proj//:all",
     out_static_libs = ["libproj.a"],
-            postfix_script = select({
+    postfix_script = select({
                 "//build/toolchains:is_linux_ppc64le": """
 # Skip cmake install and manually install for ppc64le - only library and headers, skip executables
 set -x
