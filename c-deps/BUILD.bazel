@@ -137,14 +137,24 @@ cmake(
         "//build/toolchains:is_linux_ppc64le": """
 # Skip cmake install and manually install for ppc64le - only library and headers, skip executables
 mkdir -p $INSTALLDIR/lib $INSTALLDIR/include
-cp -f lib/libproj.a $INSTALLDIR/lib/ || true
-# Try different possible locations for header files
-find . -name "projects.h" -exec cp {} $INSTALLDIR/include/ \\; || true
-find . -name "proj_api.h" -exec cp {} $INSTALLDIR/include/ \\; || true
-find . -name "geodesic.h" -exec cp {} $INSTALLDIR/include/ \\; || true
-# List what we found for debugging
+cp -f lib/libproj.a $INSTALLDIR/lib/
+# Copy header files from source directory
+if [ -f src/projects.h ]; then
+    cp -f src/projects.h $INSTALLDIR/include/
+fi
+if [ -f src/proj_api.h ]; then
+    cp -f src/proj_api.h $INSTALLDIR/include/
+fi
+if [ -f src/geodesic.h ]; then
+    cp -f src/geodesic.h $INSTALLDIR/include/
+fi
+# Also check generated includes
+if [ -f include/proj_api.h ]; then
+    cp -f include/*.h $INSTALLDIR/include/ 2>/dev/null || true
+fi
+# List what we installed
+echo "Installed libproj files:"
 ls -la $INSTALLDIR/lib/ $INSTALLDIR/include/
-exit 0
 """,
         "//conditions:default": "",
     }),
