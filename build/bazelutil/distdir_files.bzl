@@ -1192,6 +1192,7 @@ DISTDIR_FILES = {
     "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12.darwin-arm64.tar.gz": "30e0735ab9ccda203946536d24afe895abd1a1d3f35ad199f9768ccbdd5d60bc",
     "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12.linux-amd64.tar.gz": "0cac0ac930ecb9458b8a0a7969cbf735c5884d24c879c97eb28a8997eca986fa",
     "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12.linux-arm64.tar.gz": "528601fc8fb2c7e5ce8b7ae7651fd4fce2450bbef687beb96616edc5a9effa41",
+    "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12.linux-ppc64le.tar.gz": "1a7cc5f7baeaf39125dce5d660a39438e7f0e04d13d3498590d240aae976b565",
     "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12.linux-s390x.tar.gz": "f3f11bbb731da6716776d1c29a2db3d1063fa0a9f8c00636e6a77793ba79e2e3",
     "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12.windows-amd64.tar.gz": "71b5b5b86b3a5ff9f124e21984abd874a6bfeb438f368de2eee7c60a25a19c94",
     "https://storage.googleapis.com/public-bazel-artifacts/go/20250818-202337/go1.23.12fips.linux-amd64.tar.gz": "9c58fd7137b4c9d387a5c37fd2e728bc5d39357c7f8ba3358bcae513704c2983",

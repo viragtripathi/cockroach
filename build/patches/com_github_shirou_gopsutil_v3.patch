@@ -1,62 +1,29 @@
-diff --git a/host/types_linux.go b/host/types_linux.go
-index 1234567..abcdefg 100644
---- a/host/types_linux.go
-+++ b/host/types_linux.go
-@@ -5,7 +5,7 @@
- package host
- 
- // https://github.com/gcc-mirror/gcc/blob/master/libsanitizer/sanitizer_common/sanitizer_platform_limits_posix.h
--const sizeofPtr = 0x8
-+const sizeOfPtr = 0x8
- 
- // https://github.com/torvalds/linux/blob/master/include/uapi/linux/resource.h
- // https://github.com/torvalds/linux/blob/master/include/uapi/asm-generic/resource.h
-@@ -60,6 +60,18 @@ type utmp struct {
- 	Addr_v6 [4]int32
- }
- 
-+// sizeOfUtmp for ppc64le (copied from amd64 and arm64 structure)
-+// +build ppc64le
-+const sizeOfUtmp = 384
-+
-+// utmp struct for ppc64le
-+// +build ppc64le
-+type utmp struct {
-+	Type              int16
-+	// Add remaining fields similar to other architectures
-+	Pad               [380]byte // Pad to match sizeOfUtmp
-+}
-+
- // for getloadavg(3)
- type loadavgStat struct {
- 	load1  C.double
 diff --git a/host/host_linux_ppc64le.go b/host/host_linux_ppc64le.go
 new file mode 100644
 index 0000000..0123456
 --- /dev/null
 +++ b/host/host_linux_ppc64le.go
-@@ -0,0 +1,30 @@
+@@ -0,0 +1,36 @@
 +//go:build linux && ppc64le
 +// +build linux,ppc64le
 +
 +package host
 +
-+const (
-+	sizeOfUtmp = 384
-+)
++const sizeOfUtmp = 384
 +
 +type utmp struct {
-+	Type              int16
-+	Pad_cgo_0         [2]byte
-+	Pid               int32
-+	Line              [32]byte
-+	Id                [4]byte
-+	User              [32]byte
-+	Host              [256]byte
-+	Exit              exit_status
-+	Session           int32
-+	Tv                timeval
-+	Addr_v6           [4]int32
++	Type      int16
++	_         [2]byte
++	Pid       int32
++	Line      [32]byte
++	Id        [4]byte
++	User      [32]byte
++	Host      [256]byte
++	Exit      exit_status
++	Session   int32
++	Tv        timeval
++	Addr_v6   [4]int32
++	_         [20]byte
 +}
 +
 +type exit_status struct {
@@ -68,4 +35,8 @@ index 0000000..0123456
 +	TvSec  int64
 +	TvUsec int64
 +}
-
++
++type timespec struct {
++	Sec  int64
++	Nsec int64
++}

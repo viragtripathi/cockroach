@@ -78,10 +78,6 @@ cdep_alias("libjemalloc")
 
 cmake(
     name = "libproj_foreign",
-    install = select({
-        "//build/toolchains:is_linux_ppc64le": False,
-        "//conditions:default": True,
-    }),
     cache_entries = select({
         # TODO(ricky): The repetition here is dumb, but I don't know a cleaner
         # way to do it?
@@ -131,6 +127,10 @@ cmake(
         },
     }),
     generate_args = ["-GUnix Makefiles"],
+    install = select({
+        "//build/toolchains:is_linux_ppc64le": False,
+        "//conditions:default": True,
+    }),
     lib_source = "@proj//:all",
     out_static_libs = ["libproj.a"],
     postfix_script = select({
