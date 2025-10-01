@@ -112,6 +112,13 @@ cmake(
             "CMAKE_C_FLAGS": "-fPIC",
             "CMAKE_CXX_FLAGS": "-fPIC",
         },
+        "//build/toolchains:is_linux_ppc64le": {
+            "BUILD_LIBPROJ_SHARED": "OFF",
+            "CMAKE_BUILD_TYPE": "Release",
+            "CMAKE_C_FLAGS": "-fPIC",
+            "CMAKE_CXX_FLAGS": "-fPIC",
+            "CMAKE_EXE_LINKER_FLAGS": "-lm",
+        },
         "//conditions:default": {
             "BUILD_LIBPROJ_SHARED": "OFF",
             "CMAKE_BUILD_TYPE": "Release",
