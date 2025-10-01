@@ -312,6 +312,7 @@ def go_deps():
     go_repository(
         name = "com_github_apache_arrow_go_v11",
         build_file_proto_mode = "disable_global",
+        build_extra_args = ["-go_naming_convention_external=go_default_library"],
         importpath = "github.com/apache/arrow/go/v11",
         patch_args = ["-p1"],
         patches = [
@@ -7896,6 +7897,7 @@ def go_deps():
     go_repository(
         name = "com_github_shirou_gopsutil_v3",
         build_file_proto_mode = "disable_global",
+        build_extra_args = ["-go_naming_convention_external=go_default_library"],
         importpath = "github.com/shirou/gopsutil/v3",
         patch_args = ["-p1"],
         patches = [
