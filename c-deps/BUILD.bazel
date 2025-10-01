@@ -78,6 +78,10 @@ cdep_alias("libjemalloc")
 
 cmake(
     name = "libproj_foreign",
+    install = select({
+        "//build/toolchains:is_linux_ppc64le": False,
+        "//conditions:default": True,
+    }),
     cache_entries = select({
         # TODO(ricky): The repetition here is dumb, but I don't know a cleaner
         # way to do it?
