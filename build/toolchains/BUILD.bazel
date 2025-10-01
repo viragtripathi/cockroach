@@ -628,6 +628,14 @@ config_setting(
 )
 
 config_setting(
+    name = "is_linux_ppc64le",
+    constraint_values = [
+        "@io_bazel_rules_go//go/toolchain:linux",
+        "@platforms//cpu:ppc",
+    ],
+)
+
+config_setting(
     name = "is_darwin_amd64",
     constraint_values = [
         "@io_bazel_rules_go//go/toolchain:darwin",
