@@ -311,12 +311,7 @@ def go_deps():
     )
     go_repository(
         name = "com_github_apache_arrow_go_v11",
-        build_directives = [
-            "gazelle:go_visibility //visibility:public",
-        ],
-        build_file_generation = "on",
         build_file_proto_mode = "disable_global",
-        build_tags = ["ppc64le"],
         importpath = "github.com/apache/arrow/go/v11",
         sha256 = "d5275ec213d31234d54ca13fff78d07ba1837d78664c13b76363d2f75718ae4f",
         strip_prefix = "github.com/apache/arrow/go/v11@v11.0.0",
@@ -7896,12 +7891,7 @@ def go_deps():
     )
     go_repository(
         name = "com_github_shirou_gopsutil_v3",
-        build_directives = [
-            "gazelle:go_visibility //visibility:public",
-        ],
-        build_file_generation = "on",
         build_file_proto_mode = "disable_global",
-        build_tags = ["ppc64le"],
         importpath = "github.com/shirou/gopsutil/v3",
         sha256 = "ea6f8b430cee40870d8d454aaa5d4c22e84d217a2548a3f755b91a96b1c67a88",
         strip_prefix = "github.com/shirou/gopsutil/v3@v3.21.12",
