@@ -133,8 +133,8 @@ cmake(
     }),
     lib_source = "@proj//:all",
     out_static_libs = ["libproj.a"],
-    postfix_script = select({
-        "//build/toolchains:is_linux_ppc64le": """
+            postfix_script = select({
+                "//build/toolchains:is_linux_ppc64le": """
 # Skip cmake install and manually install for ppc64le - only library and headers, skip executables
 set -x
 echo "=== Installing libproj manually for ppc64le ==="
@@ -143,19 +143,31 @@ echo "INSTALLDIR: $INSTALLDIR"
 mkdir -p $INSTALLDIR/lib $INSTALLDIR/include
 cp -f lib/libproj.a $INSTALLDIR/lib/
 echo "Finding header files..."
-find . -name "*.h" -path "*/src/*" | head -20
+find . -name "*.h" | head -20
 # Copy all headers from src directory
 cp -f src/*.h $INSTALLDIR/include/ 2>/dev/null || true
 # Also copy from include directory if it exists
 if [ -d include ]; then
     cp -f include/*.h $INSTALLDIR/include/ 2>/dev/null || true
 fi
+# Look for proj_api.h specifically in common locations
+if [ -f src/proj_api.h ]; then
+    cp -f src/proj_api.h $INSTALLDIR/include/
+    echo "Found and copied proj_api.h from src/"
+elif [ -f include/proj_api.h ]; then
+    cp -f include/proj_api.h $INSTALLDIR/include/
+    echo "Found and copied proj_api.h from include/"
+else
+    echo "WARNING: proj_api.h not found in src/ or include/"
+    echo "Available headers:"
+    find . -name "proj_api.h" 2>/dev/null || echo "No proj_api.h found anywhere"
+fi
 echo "=== Installed libproj files ==="
 ls -la $INSTALLDIR/lib/
 ls -la $INSTALLDIR/include/
 """,
-        "//conditions:default": "",
-    }),
+                "//conditions:default": "",
+            }),
     targets = select({
         "//build/toolchains:is_linux_ppc64le": ["proj"],
         "//conditions:default": [],
